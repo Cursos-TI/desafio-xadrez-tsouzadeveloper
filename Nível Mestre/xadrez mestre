@@ -1,0 +1,84 @@
+#include <stdio.h>
+
+/**
+ * DESAFIO XADREZ - NÍVEL MESTRE
+ * Objetivo: Utilizar recursividade para Torre, Bispo e Rainha.
+ * Implementar loops aninhados para o Bispo e lógica complexa para o Cavalo.
+ */
+
+// --- FUNÇÕES RECURSIVAS ---
+
+// Função recursiva para a Torre (Movimento linear)
+void moverTorre(int casas) {
+    if (casas > 0) {
+        printf("Direita\n");
+        moverTorre(casas - 1); // Chamada recursiva diminuindo o contador
+    }
+}
+
+// Função recursiva para a Rainha (Movimento linear)
+void moverRainha(int casas) {
+    if (casas > 0) {
+        printf("Esquerda\n");
+        moverRainha(casas - 1);
+    }
+}
+
+// Função recursiva para o Bispo (Movimento diagonal)
+// Aqui a recursão simula o passo da diagonal
+void moverBispoRecursivo(int casas) {
+    if (casas > 0) {
+        // No nível mestre, o bispo também usa loops aninhados dentro da lógica
+        // para separar o eixo vertical do horizontal a cada passo
+        for (int v = 1; v <= 1; v++) {
+            printf("Cima, ");
+            for (int h = 1; h <= 1; h++) {
+                printf("Direita\n");
+            }
+        }
+        moverBispoRecursivo(casas - 1);
+    }
+}
+
+int main() {
+    // Definição das constantes de movimento
+    int casasTorre = 5;
+    int casasBispo = 5;
+    int casasRainha = 8;
+
+    // --- MOVIMENTAÇÃO DA TORRE (RECURSIVIDADE) ---
+    printf("Movimento da Torre:\n");
+    moverTorre(casasTorre);
+    printf("\n");
+
+    // --- MOVIMENTAÇÃO DO BISPO (RECURSIVIDADE + LOOPS ANINHADOS) ---
+    printf("Movimento do Bispo:\n");
+    moverBispoRecursivo(casasBispo);
+    printf("\n");
+
+    // --- MOVIMENTAÇÃO DA RAINHA (RECURSIVIDADE) ---
+    printf("Movimento da Rainha:\n");
+    moverRainha(casasRainha);
+    printf("\n");
+
+    // --- MOVIMENTAÇÃO DO CAVALO (LOOPS COMPLEXOS) ---
+    // Requisito: 2 casas para Cima e 1 para a Direita.
+    // Uso de múltiplas variáveis, condições e controle de fluxo.
+    printf("Movimento do Cavalo:\n");
+    
+    for (int i = 0, j = 0; i < 1; i++) { // Loop externo com múltiplas variáveis
+        while (j < 3) { // Loop controlado por condição complexa interna
+            j++;
+            
+            if (j <= 2) {
+                printf("Cima\n");
+                continue; // Pula para a próxima iteração do while para completar as 2 casas
+            }
+            
+            printf("Direita\n");
+            break; // Interrompe o while após o movimento em L completo
+        }
+    }
+
+    return 0;
+}
